@@ -56,7 +56,7 @@ const register = async (req, res, next) => {
     res.status(201).json({
         succes: true,
         msg: "Admin Register Successfully",
-        hi : admin.id,
+        hi: admin.id,
     })
 }
 

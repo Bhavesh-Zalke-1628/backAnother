@@ -5,7 +5,6 @@ const isLoggredIN = async function (req, res, next) {
         res.send("unAuthenticate ,Please Log in")
     }
     const userDetails = await jwt.verify(token, process.env.SECRET)
-
     req.admin = userDetails;
     next();
 }
