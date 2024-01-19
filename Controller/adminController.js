@@ -114,8 +114,35 @@ const logout = async (req, res, next) => {
         })
     }
 }
+const profile = async (req, res, next) => {
+    const id = req.admin.id
+    console.log(id)
+    try {
+        const admin = await Admin.findOne(id)
+        if (!admin) {
+            res.status(401).json({
+                sucess: false,
+                msg: "Admin "
+            })
+        }
+        if (admin) {
+            res.status(200).json({
+                sucess: true,
+                msg: "Admin Data",
+                admin
+            })
+        }
+    } catch (error) {
+        res.status(401).json({
+            sucess: false,
+            msg: error
+        })
+    }
+}
+
 export {
     register,
     login,
-    logout
+    logout,
+    profile
 }
