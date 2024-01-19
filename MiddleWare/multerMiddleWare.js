@@ -4,7 +4,7 @@ import multer from 'multer';
 const upload = multer({
     dest: "upload/",
     limits: { fileSize: 20 * 1024 * 1024 }, // 20mb in size of the file
-    storage: multer.diskStorage({
+storage: multer.diskStorage({
         destination: 'upload/',
         filename: function (req, file, cb) {
             cb(null, file.originalname)

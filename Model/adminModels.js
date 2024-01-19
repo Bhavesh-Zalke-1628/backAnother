@@ -12,10 +12,10 @@ const adminSchema = new Schema({
         type: String
     },
     profile: {
-        publicId: {
+        public_id: {
             type: String
         },
-        secureUrl: {
+        secure_url: {
             type: String
         }
     },
