@@ -12,10 +12,6 @@ cloudnary.v2.config({
 })
 
 
-app.get('/jokes', (req, res) => {
-    res.send('Hello World!')
-})
-
 app.listen(PORT, () => {
     connectedToDb();
     console.log(`The server is runnig at http://localhost:${PORT}`)

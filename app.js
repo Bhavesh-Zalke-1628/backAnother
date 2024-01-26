@@ -1,38 +1,25 @@
 import express from 'express'
 import { config } from 'dotenv';
 import cors from 'cors'
+import morgan from 'morgan';
 config();
 const app = express();
 
+// import the files  
 import adminRoute from './Router/adminRoute.js'
-import studentRoute from './Router/studentRoute.js'
-import morgan from 'morgan';
+
+
 app.use(cors())
 // Parse the json data 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
-// user route
-// http://localhost/4000/auth/login
-app.use('/auth', adminRoute)
+// Admin routes 
+app.use('/api/admin',adminRoute)
 
-
-// Student Route
-
-// http://localhost/4000/student/......
-app.use('/student', studentRoute)
-
-
-
-// not found the any app
-// app.get('/', (req, res) => {
-//     res.status(404).json({
-//         sucess: false,
-//         msg: "pag"
-//     })
-// })
-
-
+app.get('/',(req,res)=> {
+    res.send("hello")
+})
 
 export default app;
