@@ -7,6 +7,7 @@ const app = express();
 
 // import the files  
 import adminRoute from './Router/adminRoute.js'
+import cookieParser from 'cookie-parser'
 
 
 app.use(cors())
@@ -14,11 +15,12 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
+app.use(cookieParser())
 
 // Admin routes 
-app.use('/api/admin',adminRoute)
+app.use('/api/admin', adminRoute)
 
-app.get('/',(req,res)=> {
+app.get('/', (req, res) => {
     res.send("hello")
 })
 

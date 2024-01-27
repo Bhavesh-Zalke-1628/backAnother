@@ -33,11 +33,7 @@ adminScheama.pre('save', async function (next) {
 })
 
 adminScheama.methods.generateJwtToken = async function () {
-    return jwt.sign(
-        { id: this._id, email: this._email },
-        process.env.SECRET,
-        { expiresIn: '24h' }
-    )
+    return jwt.sign({ id: this._id, email: this.email }, process.env.SECRET, { expiresIn: '24h' })
 }
 
 

@@ -4,6 +4,7 @@ import fs from 'fs/promises'
 
 import Apperror from "../MiddleWare/Apperror.js"
 import Admin from "../Model/adminModel.js";
+import { json } from 'express';
 
 const cookieOption = {
     httpOnly: true,
@@ -14,6 +15,7 @@ const register = async (req, res, next) => {
     try {
         const { fullname, email, password } = req.body;
         if (!fullname || !email || !password) {
+            return next(new Apperror("All fields are required", 400))
         }
 
         const adminExist = await Admin.findOne({ email })
@@ -84,20 +86,21 @@ const login = async (req, res, next) => {
         const adminExist = await Admin.findOne({ email })
 
         if (!adminExist) {
-            return next(new Apperror("Invalid Email"))
+            return next(new Apperror("Invalid Email", 400))
         }
 
         if (!adminExist || !adminExist.comparedPassword(password)) {
-            return next(new Apperror("Invalid Email Or Password"))
+            return next(new Apperror("Invalid Email Or Password", 400))
         }
 
-        const token = adminExist.generateJwtToken()
+        const token = await adminExist.generateJwtToken()
         res.cookie('token', token, cookieOption)
 
         res.status(200).json({
             success: true,
             msg: "Admin Looged in Successfully",
-            adminExist
+            adminExist,
+            token
         })
     } catch (error) {
         return next(new Apperror(error, 400))
@@ -124,19 +127,21 @@ const logout = async (req, res, next) => {
 }
 
 const profile = async (req, res, next) => {
-    const id = req.admin._id
+    const { id } = req.admin
     try {
-        const admin = Admin.findById(id)
-
+        console.log(id)
+        const admin = await Admin.findById(id)
         if (!admin) {
             return next(new Apperror("Admin not found", 400))
         }
 
+        console.log(admin)
         res.status(200).json({
             success: true,
-            msg: "Admin Details",
+            msg: "user Profle",
             admin
         })
+
     } catch (error) {
         return next(new Apperror(error))
     }
