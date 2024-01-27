@@ -12,7 +12,6 @@ const adminScheama = new Schema({
     },
     password: {
         type: String,
-        select: false
     },
     profile: {
         public_id: {
@@ -29,10 +28,9 @@ adminScheama.pre('save', async function (next) {
         return next()
     }
     const admin = this
-    const saltValue = bcrypt.genSalt(10)
-    admin.password = await bcrypt.hash(admin.password, saltValue)
+    console.log(admin.password)
+    admin.password = await bcrypt.hash(admin.password, 10)
 })
-
 
 adminScheama.methods.generateJwtToken = async function () {
     return jwt.sign(
@@ -43,6 +41,13 @@ adminScheama.methods.generateJwtToken = async function () {
 }
 
 
+adminScheama.methods.comparedPassword = async function (password) {
+    try {
+        return bcrypt.compare(password, this.password)
+    } catch (error) {
+        console.log(' Error occured in comparing the password >', error)
+    }
+}
 
 const Admin = model('Admins', adminScheama);
 export default Admin;

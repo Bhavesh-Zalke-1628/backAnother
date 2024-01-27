@@ -11,7 +11,6 @@ cloudnary.v2.config({
     api_secret: process.env.CLOUD_API_SECRET,
 })
 
-
 app.listen(PORT, () => {
     connectedToDb();
     console.log(`The server is runnig at http://localhost:${PORT}`)
