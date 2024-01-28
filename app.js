@@ -10,7 +10,11 @@ import adminRoute from './Router/adminRoute.js'
 import cookieParser from 'cookie-parser'
 
 
-app.use(cors())
+app.use(cors({
+    origin: process.env.FRONTEND_URI,
+    methods: 'GET,POST,DELETE,PUT',
+    credentials: true
+}))
 // Parse the json data 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
