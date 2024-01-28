@@ -6,7 +6,8 @@ config();
 const app = express();
 
 // import the files  
-import adminRoute from './Router/adminRoute.js'
+import adminRoute from './Router/adminRoutes.js'
+import studentRoute from './Router/studentRoutes.js'
 import cookieParser from 'cookie-parser'
 
 
@@ -21,11 +22,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 app.use(cookieParser())
 
-// Admin routes 
+// Admin Routes 
 app.use('/api/admin', adminRoute)
-
-app.get('/', (req, res) => {
-    res.send("hello")
-})
+    
+// Student Routes
+app.use('/api/student', studentRoute)
 
 export default app;
