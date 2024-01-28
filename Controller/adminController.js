@@ -33,29 +33,25 @@ const register = async (req, res, next) => {
             }
         })
 
+        // Upload  the profile picture
+        console.log(req.file)
+        if (req.file) {
+            const result = await cloudinary.v2.uploader.upload(req.file.path, {
+                folder: "profile",
+                width : 250,
+                height: 250,
+                
+            });
+            console.log(result)
+            if (result) {
+                admin.profile.public_id = result.public_id
+                admin.profile.secure_url = result.secure_url
+            }
 
-        // upload the profile picture of the admin
-        // if (req.file) {
-        //     console.log(req.file)
-        //     try {
-        //         const result = await cloudinary.v2.uploader.upload(req.file.path, {
-        //             folder: "avatars",
-        //             width: 150,
-        //             height: 150,
-        //             crop: "fill",
-        //             gravity: "faces",
-        //         })
-        //         if (result) {
-        //             admin.profile.public_id = result.public_id;
-        //             admin.profile.secure_url = result.secure_url;
+            //remvove the file from local server
+            fs.rm(`uploads/${req.file.filename}`)
+        }
 
-        //             // remove the file from the local server 
-        //             fs.rm(`uploads/${req.file.filename}`)
-        //         }
-        //     } catch (error) {
-        //         return next(new Apperror("Image upload failed" || error, 500))
-        //     }
-        // }
 
         // generate the jwt token
         const token = await admin.generateJwtToken();
