@@ -24,8 +24,8 @@ app.use(cookieParser())
 
 // Admin Routes 
 app.use('/api/admin', adminRoute)
-    
+
 // Student Routes
-app.use('/api/student', studentRoute)
+app.use('/api/admin', studentRoute)
 
 export default app;
