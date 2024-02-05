@@ -10,7 +10,7 @@ const studentSchema = new Schema({
         type: String,
     },
     phone: {
-        type: String
+        type: Number
     }
 
 })

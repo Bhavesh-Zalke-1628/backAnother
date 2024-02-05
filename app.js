@@ -1,14 +1,16 @@
 import express from 'express'
 import { config } from 'dotenv';
+config();
 import cors from 'cors'
 import morgan from 'morgan';
-config();
 const app = express();
 
 // import the files  
 import adminRoute from './Router/adminRoutes.js'
 import studentRoute from './Router/studentRoutes.js'
+import adminDetailsRoute from './Router/adminDetailsRoutes.js'
 import cookieParser from 'cookie-parser'
+import bodyParser from 'body-parser';
 
 
 app.use(cors({
@@ -21,11 +23,14 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 app.use(cookieParser())
-
+app.use(bodyParser.json())
 // Admin Routes 
 app.use('/api/admin', adminRoute)
 
 // Student Routes
 app.use('/api/admin', studentRoute)
+
+// Admindetails Routes 
+app.use('/api/admin',adminDetailsRoute)
 
 export default app;

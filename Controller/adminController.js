@@ -38,9 +38,9 @@ const register = async (req, res, next) => {
         if (req.file) {
             const result = await cloudinary.v2.uploader.upload(req.file.path, {
                 folder: "profile",
-                width : 250,
+                width: 250,
                 height: 250,
-                
+
             });
             console.log(result)
             if (result) {
@@ -142,5 +142,6 @@ const profile = async (req, res, next) => {
         return next(new Apperror(error))
     }
 }
+
 
 export { register, login, logout, profile }
