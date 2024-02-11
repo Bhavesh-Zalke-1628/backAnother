@@ -10,13 +10,14 @@ const getStudent = async (req, res, next) => {
             studentData
         })
     } catch (error) {
-
+        console.log(error)
     }
 }
-
-
 const createStudent = async (req, res, next) => {
+
+    let rollNumber = 1
     const { name, email, phone } = req.body
+
     console.log(name, email, phone)
     try {
         if (!name || !email || !phone) {
@@ -32,7 +33,8 @@ const createStudent = async (req, res, next) => {
         const student = await Student.create({
             name,
             email,
-            phone
+            phone,
+            rollNumber
         })
 
         if (!student) {
@@ -44,6 +46,7 @@ const createStudent = async (req, res, next) => {
             msg: "Student create successfullly",
             student
         })
+        rollNumberv = rollNumber + 1
     } catch (error) {
         return next(new Apperror(error, 400))
     }
