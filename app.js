@@ -8,7 +8,6 @@ const app = express();
 // import the files  
 import adminRoute from './Router/adminRoutes.js'
 import studentRoute from './Router/studentRoutes.js'
-import adminDetailsRoute from './Router/adminDetailsRoutes.js'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser';
 
@@ -31,6 +30,6 @@ app.use('/api/admin', adminRoute)
 app.use('/api/admin', studentRoute)
 
 // Admindetails Routes 
-app.use('/api/admin',adminDetailsRoute)
+// app.use('/api/admin',adminDetailsRoute)
 
 export default app;
