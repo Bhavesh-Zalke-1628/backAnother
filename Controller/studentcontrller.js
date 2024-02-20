@@ -15,7 +15,6 @@ const getStudent = async (req, res, next) => {
 }
 const createStudent = async (req, res, next) => {
 
-    let rollNumber = 1
     const { name, email, phone } = req.body
 
     console.log(name, email, phone)
@@ -34,7 +33,7 @@ const createStudent = async (req, res, next) => {
             name,
             email,
             phone,
-            rollNumber
+            
         })
 
         if (!student) {
@@ -46,7 +45,6 @@ const createStudent = async (req, res, next) => {
             msg: "Student create successfullly",
             student
         })
-        rollNumberv = rollNumber + 1
     } catch (error) {
         return next(new Apperror(error, 400))
     }

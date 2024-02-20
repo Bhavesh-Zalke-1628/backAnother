@@ -10,6 +10,7 @@ import adminRoute from './Router/adminRoutes.js'
 import studentRoute from './Router/studentRoutes.js'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser';
+import attendaceRoute from './Router/attendanceRoutes.js';
 
 
 app.use(cors({
@@ -29,7 +30,8 @@ app.use('/api/admin', adminRoute)
 // Student Routes
 app.use('/api/admin', studentRoute)
 
-// Admindetails Routes 
-// app.use('/api/admin',adminDetailsRoute)
+// Attendace Route
+app.use('/api/admin', attendaceRoute)
+
 
 export default app;

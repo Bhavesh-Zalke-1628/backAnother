@@ -1,7 +1,5 @@
 import { Schema, model } from "mongoose";
 
-
-
 const studentSchema = new Schema({
     name: {
         type: String
@@ -11,9 +9,6 @@ const studentSchema = new Schema({
     },
     phone: {
         type: Number
-    },
-    rollNumber :{
-        type : Number
     }
 
 })
