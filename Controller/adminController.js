@@ -143,5 +143,16 @@ const profile = async (req, res, next) => {
     }
 }
 
+const adminDetails = async (req, res, next) => {
+    try {
+        res.send("helo")
+    } catch (error) {
+        return
+        next(
+            new Apperror(error, 400)
+        )
+    }
+}
 
-export { register, login, logout, profile }
+
+export { register, login, logout, profile,adminDetails }

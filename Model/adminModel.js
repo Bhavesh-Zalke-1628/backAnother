@@ -19,6 +19,16 @@ const adminScheama = new Schema({
         secure_url: {
             type: String
         }
+    },
+    details: {
+        department: {
+            type: String,
+            required: true
+        },
+        clas: {
+            type: String,
+            required: true
+        }
     }
 })
 

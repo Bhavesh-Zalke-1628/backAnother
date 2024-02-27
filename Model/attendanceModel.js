@@ -6,7 +6,7 @@ const attendacneSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Students'
     },
-    present: {
+    present: {  
         type: Boolean,
         default: false
     },
