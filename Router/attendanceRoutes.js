@@ -1,11 +1,10 @@
 import { Router } from "express";
-import { attendace, getSingleUser } from "../Controller/attendanceController.js";
+import { attendace } from "../Controller/attendanceController.js";
 
 const router = Router()
 
 
-router.route('/attendace').get(attendace)
-router.route('/single-user').get(getSingleUser  )
+router.route('/attendace/:id').post(attendace)
 
 
-export default router;
+export default router;          
