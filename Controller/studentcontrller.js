@@ -39,7 +39,9 @@ const createStudent = async (req, res, next) => {
         if (!student) {
             return next(new Apperror("Failed to create an student", 400));
         }
-
+        const x = student._id
+        x.toString()
+        console.log(x)
         res.status(200).json({
             success: true,
             msg: "Student create successfullly",

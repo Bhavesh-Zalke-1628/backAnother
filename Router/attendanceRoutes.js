@@ -1,10 +1,9 @@
 import { Router } from "express";
-import { attendace } from "../Controller/attendanceController.js";
+import { absentAttendace, presetnAttendace } from "../Controller/attendanceController.js";
 
 const router = Router()
 
-
-router.route('/attendace/:id').post(attendace)
-
+router.route('/attendace/present/:id').post(presetnAttendace)
+router.route('/attendace/absent/:id').post(absentAttendace)
 
 export default router;          

@@ -1,9 +1,8 @@
-import mongoose,{ Schema, model } from 'mongoose'
+import mongoose, { Schema, model } from 'mongoose'
 
 const attendacneSchema = new Schema({
-    studentData: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Students'
+    id : {
+        type: String
     },
     present: {
         type: Boolean,
