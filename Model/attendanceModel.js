@@ -1,7 +1,7 @@
 import mongoose, { Schema, model } from 'mongoose'
 
 const attendacneSchema = new Schema({
-    id : {
+    student_id : {
         type: String
     },
     present: {

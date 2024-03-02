@@ -8,7 +8,7 @@ const presetnAttendace = async (req, res, next) => {
     present = true
     absent = false
     const data = await Attendace.create({
-        id: id,
+        student_id: id,
         present: present,
         absent: absent
     })
@@ -34,7 +34,7 @@ const absentAttendace = async (req, res, next) => {
     present = false
 
     const data = await Attendace.create({
-        id: id,
+        student_id: id,
         present: present,
         absent: absent
     })
@@ -48,12 +48,28 @@ const absentAttendace = async (req, res, next) => {
     } catch (error) {
         return next(new Apperror(error, 400))
     }
+
 }
 
 
-
-
+const getStudentAttandacne = async (req, res, next) => {
+    try {
+        const data = await Attendace.find({})
+        res.status(200).json({
+            success: true,
+            msg: "Hello this is the all student attandance",
+            data : data ,
+        })
+    } catch (error) {
+        return next(
+            new Apperror(
+                error, 400
+            )
+        )
+    }
+}
 export {
     presetnAttendace,
-    absentAttendace
+    absentAttendace,
+    getStudentAttandacne
 }

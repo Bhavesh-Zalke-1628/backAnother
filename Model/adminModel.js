@@ -19,7 +19,7 @@ const adminScheama = new Schema({
         secure_url: {
             type: String
         }
-    } 
+    }   
 })
 
 adminScheama.pre('save', async function (next) {
