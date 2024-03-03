@@ -57,8 +57,7 @@ const getStudentAttandacne = async (req, res, next) => {
         const data = await Attendace.find({})
         res.status(200).json({
             success: true,
-            msg: "Hello this is the all student attandance",
-            data : data ,
+            data,
         })
     } catch (error) {
         return next(
