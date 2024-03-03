@@ -145,7 +145,14 @@ const profile = async (req, res, next) => {
 
 const adminDetails = async (req, res, next) => {
     try {
-        res.send("helo")
+
+        const response = await Admin.find({})
+        console.log('response', response)
+        res.status(200).json({
+            success: true,
+            msg: "All admins data",
+            response
+        })
     } catch (error) {
         return
         next(
@@ -155,4 +162,4 @@ const adminDetails = async (req, res, next) => {
 }
 
 
-export { register, login, logout, profile,adminDetails }
+export { register, login, logout, profile, adminDetails }
