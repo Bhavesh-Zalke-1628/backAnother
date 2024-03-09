@@ -8,9 +8,11 @@ const app = express();
 // import the files  
 import adminRoute from './Router/adminRoutes.js'
 import studentRoute from './Router/studentRoutes.js'
+import attendaceRoute from './Router/attendanceRoutes.js';
+import marksRoute from './Router/marksRouter.js';
+
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser';
-import attendaceRoute from './Router/attendanceRoutes.js';
 
 
 app.use(cors({
@@ -33,5 +35,7 @@ app.use('/api/admin', studentRoute)
 // Attendace Route
 app.use('/api/admin', attendaceRoute)
 
+// Marks Route 
+app.use('/api/admin', marksRoute)
 
 export default app;
